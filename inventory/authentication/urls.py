@@ -7,7 +7,7 @@ authentication_router.register(r'profile', ProfileViewSet, basename='profile')
 authentication_router.register(r'users', UserViewSet, basename='users')
 
 urlpatterns = [
-    # Router URLs
+    path('register/', RegisterView.as_view(), name='register'),
+   
     *authentication_router.urls,
-
 ]
