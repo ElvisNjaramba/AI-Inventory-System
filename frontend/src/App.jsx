@@ -6,13 +6,14 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Login from './pages/authentication/Login';
 import Register from './pages/authentication/Register';
 import Dashboard from './pages/Dashboard';
-
+import ManageStaff from './pages/ManageStaff';
 
 function App() {
   return (
     <Router>
       <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/manage/staff" element={<ManageStaff />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
