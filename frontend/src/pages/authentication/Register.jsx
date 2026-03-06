@@ -59,7 +59,7 @@ const Register = () => {
 
     try {
       setLoading(true); // show spinner
-      const response = await axios.post("/register/", userData);
+      const response = await api.post("/register/", userData);
       console.log("Registered!", response.data);
       navigate("/login");
     } catch (err) {

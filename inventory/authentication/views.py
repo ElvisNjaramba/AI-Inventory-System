@@ -1,9 +1,13 @@
 from rest_framework.viewsets import ModelViewSet
-from django.contrib.auth.models import User
-from .models import Profile
 from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from .serializers import ProfileSerializer, UserSerializer
+from django.contrib.auth.models import User
+from .models import Profile
+from .serializers import (
+    ProfileSerializer,
+    UserSerializer,
+    RegisterSerializer,
+)
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
@@ -18,13 +22,14 @@ class ProfileViewSet(ModelViewSet):
         return Profile.objects.filter(user=self.request.user)
 
     def get_serializer_context(self):
-        return {'request': self.request}
+        return {"request": self.request}
 
     def partial_update(self, request, *args, **kwargs):
-        kwargs['partial'] = True  
+        kwargs['partial'] = True
         return super().update(request, *args, **kwargs)
+
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
